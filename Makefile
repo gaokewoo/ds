@@ -5,7 +5,7 @@ SRCS = $(wildcard *.cc)
 BUILD = $(patsubst %.cc, %, $(SRCS))
 
 .cc:
-	$(CC) $(CC_FLAGS) -o $@ $< 	
+	$(CC) $(CC_FLAGS) -o $@ $< alg/Sort.cc
 
 all: $(BUILD)
 

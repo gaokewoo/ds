@@ -3,35 +3,43 @@
 #include <stdlib.h> 
 #include <stdio.h>
 #include <time.h>
+#include "alg/Sort.hh"
 
 using namespace std;
 
 int main()
 {
-    ofstream f("./data.txt");
+    const int DATA_NUM = 100000;
+    //ofstream f("./data.txt");
 
-    srand( (unsigned)time( NULL ) ); 
-    if(f.good())
-    {
-        for(int i=0;i<100000;i++)
-        {
-            int j = rand()%1000;
-            f<<j<<" ";
-        }
-    }
-
-    f.close();
-
-
-    //ifstream in_file;
-    //in_file.open("./data.txt",ios::in);
-    //while(!in_file.eof())
+    //srand( (unsigned)time( NULL ) ); 
+    //if(f.good())
     //{
-    //    int j;
-    //    in_file>>j;
-    //    cout<<j<<endl;
+    //    for(int i=0;i<DATA_NUM;i++)
+    //    {
+    //        int j = rand()%1000;
+    //        f<<j<<" ";
+    //    }
     //}
-    //in_file.close();
+
+    //f.close();
+
+
+    int *arr=new int[DATA_NUM];
+    ifstream in_file;
+    in_file.open("./data.txt",ios::in);
+    for(int k=0; !in_file.eof() && k<DATA_NUM; k++)
+    {
+        int j;
+        in_file>>j;
+        arr[k]=j;
+    }
+    in_file.close();
+
+    Sort st;
+    st.doSort(arr);
+
+    delete[] arr;
 
     return 0;
 }
