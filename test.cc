@@ -37,7 +37,7 @@ int main()
     in_file.close();
 
     Sort st;
-    st.doSort(arr);
+    st.doSort(arr, DATA_NUM);
 
     delete[] arr;
 

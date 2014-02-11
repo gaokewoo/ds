@@ -6,7 +6,7 @@ using namespace std;
 class Sort
 {
     public:
-        void doSort(int * arr);
+        void doSort(int * arr, int dataNum);
 
 };
 
