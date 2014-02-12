@@ -2,13 +2,15 @@
 #include <fstream>
 #include <stdlib.h> 
 #include <stdio.h>
+#include <sys/time.h>
 #include <time.h>
 #include "alg/Sort.hh"
+#include "alg/Subsequence.hpp"
 
 using namespace std;
 
 const int DATA_NUM = 100000;
-const int NEG_POS_DATA_NUM = 30;
+const int NEG_POS_DATA_NUM = 5000;
 
 void genGneralData()
 {
@@ -79,18 +81,36 @@ void testNegPosData()
     }
     in_file.close();
 
-    Sort st;
-    st.doSort(arr, NEG_POS_DATA_NUM);
+    //N^3
+    MaxSubsequenceSum1(arr,NEG_POS_DATA_NUM);
+    //N^2
+    MaxSubsequenceSum2(arr,NEG_POS_DATA_NUM);
 
+    cout<<"..... MaxSubsequenceSum3 Beg....."<<endl;
+    struct timeval t_start,t_end; 
+
+    gettimeofday(&t_start, NULL); 
+    long start = ((long)t_start.tv_sec)*1000+(long)t_start.tv_usec/1000; 
+
+    //NlogN
+    int maxSum = MaxSubsequenceSum3(arr,0,NEG_POS_DATA_NUM-1);
+
+    gettimeofday(&t_end, NULL); 
+    long end = ((long)t_end.tv_sec)*1000+(long)t_end.tv_usec/1000; 
+    cout<<"Totally consume "<<end-start<<" ms"<<endl;
+    cout<<"..... MaxSubsequenceSum3 ("<<maxSum<<") End....."<<endl;
+
+    //N
+    MaxSubsequenceSum4(arr,NEG_POS_DATA_NUM);
     delete[] arr;
 }
 
 int main()
 {
-    genGneralData();
-    testGeneralData();
+    //genGneralData();
+    //testGeneralData();
 
-    genNegPosData();
+    //genNegPosData();
     testNegPosData();
 
     return 0;
