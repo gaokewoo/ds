@@ -6,6 +6,7 @@
 #include <time.h>
 #include "alg/Sort.hh"
 #include "alg/Subsequence.hpp"
+#include "alg/List.hpp"
 
 using namespace std;
 
@@ -111,7 +112,10 @@ int main()
     //testGeneralData();
 
     //genNegPosData();
-    testNegPosData();
+    //testNegPosData();
+
+    List<int> list;
+    list.makeEmpty();
 
     return 0;
 }
