@@ -1,9 +1,6 @@
-#include <iostream>
-#include <sys/time.h>
+#include "Subsequence.hh"
 
-using namespace std;
-
-int MaxSubsequenceSum1(const int A[], int N)
+int Subsequence::MaxSubsequenceSum1(const int A[], int N)
 {
     cout<<"....."<<__func__<<" Beg....."<<endl;
     struct timeval t_start,t_end; 
@@ -35,7 +32,7 @@ int MaxSubsequenceSum1(const int A[], int N)
     return maxSum;
 }
 
-int MaxSubsequenceSum2(const int A[], int N)
+int Subsequence::MaxSubsequenceSum2(const int A[], int N)
 {
     cout<<"....."<<__func__<<" Beg....."<<endl;
     struct timeval t_start,t_end; 
@@ -66,7 +63,7 @@ int MaxSubsequenceSum2(const int A[], int N)
     return maxSum;
 }
 
-int MaxSubsequenceSum3(const int A[], int left, int right)
+int Subsequence::MaxSubsequenceSum3(const int A[], int left, int right)
 {
     int maxLeftSum, maxRightSum;
     int maxLeftBorderSum, maxRightBorderSum;
@@ -112,7 +109,7 @@ int MaxSubsequenceSum3(const int A[], int left, int right)
     return maxSum;
 }
 
-int MaxSubsequenceSum4(const int A[], int N)
+int Subsequence::MaxSubsequenceSum4(const int A[], int N)
 {
     cout<<"....."<<__func__<<" Beg....."<<endl;
     struct timeval t_start,t_end; 

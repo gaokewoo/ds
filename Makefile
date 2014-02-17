@@ -1,16 +1,21 @@
-CC_FLAGS= -g -Wall
+CC_FLAGS= -g -Wall -fpic
 CC=g++
 
-SRCS = $(wildcard *.cc)
-BUILD = $(patsubst %.cc, %, $(SRCS))
+SUBDIRS=alg
 
-LINK_SRC = alg/Sort.cc alg/Subsequence.hpp alg/List.hpp
+TARGET_NAME=test
 
-.cc:
-	$(CC) $(CC_FLAGS) -o $@ $< $(LINK_SRC)
+define make_subdir
+@for subdir in $(SUBDIRS) ; do \
+    ( cd $$subdir && make $1) \
+    done;
+endef
 
-all: $(BUILD)
+all:
+	$(call make_subdir , all)
+	$(CC) $(CC_FLAGS) -o $(TARGET_NAME) $(TARGET_NAME).cc -L. -lalg
 
 clean:
-	rm -f $(BUILD)
+	$(call make_subdir , clean)
+	rm $(TARGET_NAME)
 

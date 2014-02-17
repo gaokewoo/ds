@@ -5,8 +5,8 @@
 #include <sys/time.h>
 #include <time.h>
 #include "alg/Sort.hh"
-#include "alg/Subsequence.hpp"
-#include "alg/List.hpp"
+#include "alg/Subsequence.hh"
+#include "alg/List.hh"
 
 using namespace std;
 
@@ -83,9 +83,9 @@ void testNegPosData()
     in_file.close();
 
     //N^3
-    MaxSubsequenceSum1(arr,NEG_POS_DATA_NUM);
+    Subsequence::MaxSubsequenceSum1(arr,NEG_POS_DATA_NUM);
     //N^2
-    MaxSubsequenceSum2(arr,NEG_POS_DATA_NUM);
+    Subsequence::MaxSubsequenceSum2(arr,NEG_POS_DATA_NUM);
 
     cout<<"..... MaxSubsequenceSum3 Beg....."<<endl;
     struct timeval t_start,t_end; 
@@ -94,7 +94,7 @@ void testNegPosData()
     long start = ((long)t_start.tv_sec)*1000+(long)t_start.tv_usec/1000; 
 
     //NlogN
-    int maxSum = MaxSubsequenceSum3(arr,0,NEG_POS_DATA_NUM-1);
+    int maxSum = Subsequence::MaxSubsequenceSum3(arr,0,NEG_POS_DATA_NUM-1);
 
     gettimeofday(&t_end, NULL); 
     long end = ((long)t_end.tv_sec)*1000+(long)t_end.tv_usec/1000; 
@@ -102,7 +102,7 @@ void testNegPosData()
     cout<<"..... MaxSubsequenceSum3 ("<<maxSum<<") End....."<<endl;
 
     //N
-    MaxSubsequenceSum4(arr,NEG_POS_DATA_NUM);
+    Subsequence::MaxSubsequenceSum4(arr,NEG_POS_DATA_NUM);
     delete[] arr;
 }
 

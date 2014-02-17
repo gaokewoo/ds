@@ -106,4 +106,3 @@ T List<T>::retrieve(Node<T> *p)
     return T(1);
 }
 
-
