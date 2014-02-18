@@ -35,15 +35,23 @@ class List
 };
 
 template<typename T>
-List<T>::List()
+List<T>::List()try:head(new Node<T>(0))
 {
-
+    tail=head;
+    cout<<"List constructor."<<endl;
+}
+catch(bad_alloc & err)
+{
+    cerr<<"List alloc Node error."<<endl;
+    cerr<<"Error info:"<<err.what()<<endl;
 }
 
 template<typename T>
 List<T>::~List()
 {
-
+    delete head;
+    tail=head=NULL;
+    cout<<"List destructor."<<endl;
 }
 
 template<typename T>
@@ -56,8 +64,7 @@ void List<T>::makeEmpty()
 template<typename T>
 bool List<T>::isEmpty()
 {
-
-    return false;
+    return head==tail;
 }
 
 template<typename T>
