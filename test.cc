@@ -128,6 +128,7 @@ void testList()
     {
         sum++;
         cout<<sum<<":"<<my_list.retrieve(p)<<endl;
+        my_list.del(my_list.retrieve(p));
         p=my_list.getNext(p);
     }
 

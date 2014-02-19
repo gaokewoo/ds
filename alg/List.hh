@@ -68,7 +68,11 @@ template<typename T>
 void List<T>::makeEmpty()
 {
     delList();
-    cout<<"I'm empty."<<endl;
+    
+    if(isEmpty())
+      cout<<"I'm empty"<<endl;
+    else
+      cerr<<"I'm not empty"<<endl;
 }
 
 template<typename T>
