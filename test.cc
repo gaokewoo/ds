@@ -106,6 +106,35 @@ void testNegPosData()
     delete[] arr;
 }
 
+void testList()
+{
+    List<int> my_list;
+    
+    cout<<"My List is empty:"<<my_list.isEmpty()<<endl;
+
+    ifstream in_file;
+    in_file.open("./data.txt",ios::in);
+    for(int k=0; !in_file.eof() && k<DATA_NUM; k++)
+    {
+        int j;
+        in_file>>j;
+        my_list.insert(j);
+    }
+    in_file.close();
+
+    int sum=0;
+    Node<int> *p = my_list.getFirst();
+    while(p!=NULL)
+    {
+        sum++;
+        cout<<sum<<":"<<my_list.retrieve(p)<<endl;
+        p=my_list.getNext(p);
+    }
+
+    cout<<"In sum:"<<sum<<endl;
+    
+}
+
 int main()
 {
     //genGneralData();
@@ -114,8 +143,7 @@ int main()
     //genNegPosData();
     //testNegPosData();
 
-    List<int> list;
-    list.makeEmpty();
+    testList();
 
     return 0;
 }
