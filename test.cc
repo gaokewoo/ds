@@ -7,11 +7,27 @@
 #include "alg/Sort.hh"
 #include "alg/Subsequence.hh"
 #include "alg/List.hh"
+#include "alg/Stack.hh"
 
 using namespace std;
 
 const int DATA_NUM = 100000;
 const int NEG_POS_DATA_NUM = 5000;
+
+int * readData(int *arr, int num)
+{
+    ifstream in_file;
+    in_file.open("./data.txt",ios::in);
+    for(int k=0; !in_file.eof() && k<num; k++)
+    {
+        int j;
+        in_file>>j;
+        arr[k]=j;
+    }
+    in_file.close();
+
+    return arr;
+}
 
 void genGneralData()
 {
@@ -112,24 +128,29 @@ void testList()
     
     cout<<"My List is empty:"<<my_list.isEmpty()<<endl;
 
-    ifstream in_file;
-    in_file.open("./data.txt",ios::in);
-    for(int k=0; !in_file.eof() && k<DATA_NUM; k++)
-    {
-        int j;
-        in_file>>j;
-        my_list.insert(j);
-    }
-    in_file.close();
+    int *arr=new int[DATA_NUM];
+    readData(arr,DATA_NUM);
 
-    int sum=0;
+    for(int k=0; k<DATA_NUM; k++)
+    {
+        my_list.insert(arr[k]);
+    }
+
+    int sum=0,k=DATA_NUM-1;
     Node<int> *p = my_list.getFirst();
     while(p!=NULL)
     {
         sum++;
         cout<<sum<<":"<<my_list.retrieve(p)<<endl;
+        if(arr[k]!=my_list.retrieve(p)) //compare the list value equal the arr value
+        {
+          cerr<<"arr["<<k<<"]="<<arr[k]<<" list elem="<<my_list.retrieve(p)<<endl;
+          break;
+        }
+
         my_list.del(my_list.retrieve(p));
         p=my_list.getNext(p);
+        k--;
     }
 
     cout<<"In sum:"<<sum<<endl;
@@ -144,7 +165,11 @@ int main()
     //genNegPosData();
     //testNegPosData();
 
-    testList();
+    //testList();
+    
+    using namespace StackList;
+    Stack<int> stack;
+    stack.isEmpty();
 
     return 0;
 }
