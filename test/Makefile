@@ -5,7 +5,7 @@ SRCS = $(wildcard *.cc)
 BUILD = $(patsubst %.cc, %, $(SRCS))
 
 .cc:
-	$(CC) $(CC_FLAGS) -I ../gmock/gtest/include -o $@ $< ../lib/gmock_main.a -L../lib/ -lalg -lpthread
+	$(CC) $(CC_FLAGS) -I ../gmock/gtest/include -I ../ -o $@ $< ../lib/gmock_main.a -L../lib/ -lalg -lpthread
 	@echo
 
 all: $(BUILD)
