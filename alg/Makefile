@@ -11,7 +11,8 @@ OBJS=$(BUILD)
 
 $(LIB_NAME):$(OBJS)
 	$(CC) -shared -o $@ $(OBJS)
-	mv -f $@ ../
+	@if [ ! -d ../lib/ ];then mkdir ../lib/;fi
+	mv -f $@ ../lib/
 	@echo "### $@ loaded ###\n"
 
 .cc.o:
