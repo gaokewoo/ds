@@ -65,3 +65,35 @@ TEST_F(StackTest,testStackList)
     EXPECT_EQ(DATA_NUM, sum);
 }
 
+TEST_F(StackTest,testStackArray) 
+{
+    using namespace StackArray;
+
+    Stack<int> my_stack;
+
+    for(int k=0; k<DATA_NUM; k++)
+    {
+        my_stack.push(arr[k]);
+    }
+
+    int sum=0,k=DATA_NUM-1;
+    bool not_equal=false;
+    while(!my_stack.isEmpty())
+    {
+        sum++; //compute element number
+        int e = my_stack.pop();
+        if(arr[k]!=e) //compare the list value equal the arr value
+        {
+            cerr<<"Expect:"<<arr[k]<<" Actual:"<<e<<endl;
+            not_equal=true;
+            break;
+        }
+
+        k--;
+    }
+
+    ASSERT_TRUE(not_equal == false);
+
+    EXPECT_EQ(DATA_NUM, sum);
+}
+

@@ -51,17 +51,15 @@ namespace StackList
     template<typename T>
         T Stack<T>::pop()
         {
+            T e;
             try
             {
-                T e;
                 Node<T> *p = s->next;
                 s->next = p->next;
                 if(p != NULL)
                 {
                     e = p->elem;
                     delete p;
-
-                    return e;
                 }
                 else
                 {
@@ -76,6 +74,7 @@ namespace StackList
                 cerr<<"Error info:"<<e.what()<<endl;
             }
 
+            return e;
         }
 
     template<typename T>
@@ -130,3 +129,108 @@ namespace StackList
         }
 
 };
+
+namespace StackArray
+{
+    template<typename T>
+        class Stack
+        {
+            public:
+                Stack();
+                Stack(int size);
+                ~Stack();
+                bool isEmpty();
+                void makeEmpty();
+                void push(T x);
+                T top();
+                T pop();
+
+            private:
+                enum{DEFAULT_SIZE=100000};
+                int size;
+                T *base;
+                int index;
+        };
+
+    template<typename T>
+        Stack<T>::Stack()try:size(DEFAULT_SIZE),base(new T[size]),index(-1)
+        {
+
+        }
+    catch(bad_alloc &e)
+    {
+        cerr<<"Stack alloc Node error."<<endl;
+        cerr<<"Error info:"<<e.what()<<endl;
+    }
+
+    template<typename T>
+        Stack<T>::Stack(int size)try:size(size),base(new T[size]),index(-1)
+        {
+
+        }
+    catch(bad_alloc &e)
+    {
+        cerr<<"Stack alloc Node error."<<endl;
+        cerr<<"Error info:"<<e.what()<<endl;
+    }
+
+    template<typename T>
+        Stack<T>::~Stack()
+        {
+            try
+            {
+                delete [] base;
+                base=NULL;
+                index=-1;
+            }
+            catch(bad_alloc &e)
+            {
+                cerr<<"List destruct error."<<endl;
+            }
+        }
+
+    template<typename T>
+        bool Stack<T>::isEmpty()
+        {
+            return index==-1;
+        }
+
+    template<typename T>
+        void Stack<T>::makeEmpty()
+        {
+            index=-1;
+        }
+
+    template<typename T>
+        void Stack<T>::push(T x)
+        {
+           if(index+1 == size)
+           {
+               cerr<<"The stack is full."<<endl;
+           }
+           base[++index]=x;
+        }
+
+    template<typename T>
+        T Stack<T>::top()
+        {
+            if(index==-1)
+            {
+                cerr<<"The Stack has no data"<<endl;
+            }
+            return base[index];
+        }
+
+    template<typename T>
+        T Stack<T>::pop()
+        {
+            if(index==-1)
+            {
+                cerr<<"The Stack has no data"<<endl;
+            }
+
+            return base[index--];
+        }
+
+};
+
