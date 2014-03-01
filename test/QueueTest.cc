@@ -63,3 +63,71 @@ TEST_F(QueueTest,testQueueList)
     EXPECT_EQ(DATA_NUM, sum);
 }
 
+TEST_F(QueueTest,testQueueArray_Construct)
+{
+    using namespace QueueArray;
+    Queue<int> my_queue;
+
+    int cap = my_queue.getCapacity();
+
+    EXPECT_EQ(cap, 0);
+
+    bool isFull = my_queue.isFull();
+
+    EXPECT_FALSE(isFull);
+
+    bool isEmpty = my_queue.isEmpty();
+
+    EXPECT_TRUE(isEmpty);
+}
+
+TEST_F(QueueTest,testQueueArray_enQueue)
+{
+    using namespace QueueArray;
+    Queue<int> my_queue(3);
+
+    my_queue.enQueue(1);
+    my_queue.enQueue(2);
+    my_queue.enQueue(3);
+
+    int cap = my_queue.getCapacity();
+
+    EXPECT_EQ(cap, 3);
+
+    bool isFull = my_queue.isFull();
+
+    EXPECT_TRUE(isFull);
+
+    bool isEmpty = my_queue.isEmpty();
+
+    EXPECT_FALSE(isEmpty);
+}
+
+TEST_F(QueueTest,testQueueArray_deQueue)
+{
+    using namespace QueueArray;
+    Queue<int> my_queue(3);
+
+    my_queue.enQueue(1);
+    my_queue.deQueue();
+    my_queue.enQueue(2);
+    my_queue.deQueue();
+    my_queue.enQueue(3);
+    my_queue.deQueue();
+    my_queue.enQueue(4);
+    int e = my_queue.deQueue();
+    EXPECT_EQ(e, 4);
+
+    int cap = my_queue.getCapacity();
+
+    EXPECT_EQ(cap, 0);
+
+    bool isFull = my_queue.isFull();
+
+    EXPECT_FALSE(isFull);
+
+    bool isEmpty = my_queue.isEmpty();
+
+    EXPECT_TRUE(isEmpty);
+}
+
