@@ -29,6 +29,8 @@ namespace BinaryTree
                 void del(T x);
                 Node<T> * del(Node<T> * t,T x);
                 T retrieve(Node<T> * p);
+                void printTree();
+                void print(Node<T> *t);
 
             private:
                 Node<T> *root;
@@ -44,6 +46,8 @@ namespace BinaryTree
     template <typename T>
         Tree<T>::~Tree()
         {
+            while(root!=NULL)
+              del(root->elem);
         }
 
     template <typename T>
@@ -166,6 +170,7 @@ namespace BinaryTree
                         t = t->left;
                     }
 
+                    cout<<"Delete:"<<tmp->elem<<endl;
                     delete tmp;
 
                 }
@@ -178,6 +183,23 @@ namespace BinaryTree
                 cerr<<e.what()<<endl;
             }
 
+        }
+
+    template <typename T>
+        void Tree<T>::printTree()
+        {
+            print(root);
+        }
+
+    template <typename T>
+        void Tree<T>::print(Node<T> *t)
+        {
+            if(t!=NULL)
+            {
+                print(t->left);
+                cout<<t->elem<<",";
+                print(t->right);
+            }
         }
 
 };

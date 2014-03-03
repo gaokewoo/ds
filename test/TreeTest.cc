@@ -21,6 +21,16 @@ class TreeTest:public testing::Test
                 arr[k]=j;
             }
             in_file.close();
+
+            arr_not_dup = new int[1000];
+            in_file.open("../data/data3.txt",ios::in);
+            for(int k=0; !in_file.eof() && k<1000; k++)
+            {
+                int j;
+                in_file>>j;
+                arr_not_dup[k]=j;
+            }
+            in_file.close();
         }
 
         virtual void TearDown()
@@ -33,6 +43,7 @@ class TreeTest:public testing::Test
     protected:
         enum {DATA_NUM = 100000};
         int * arr;
+        int * arr_not_dup;
 };
 
 TEST_F(TreeTest,testBinaryTree) 
@@ -45,10 +56,11 @@ TEST_F(TreeTest,testBinaryTree)
     {
         my_tree.ins(arr[k]);
     }
+    //my_tree.printTree();
 
-    for(int k=0; k<DATA_NUM; k++)
+    for(int k=0; k<1000; k++)
     {
-        my_tree.del(arr[k]);
+        my_tree.del(arr_not_dup[k]);
     }
 
 }
