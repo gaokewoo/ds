@@ -2,6 +2,7 @@
 #include <fstream>
 #include "gtest/gtest.h"
 #include "alg/BinaryTree.hh"
+#include "alg/AVLTree.hh"
 
 using namespace std;
 
@@ -49,6 +50,25 @@ class TreeTest:public testing::Test
 TEST_F(TreeTest,testBinaryTree) 
 {
     using namespace BinaryTree;
+
+    Tree<int> my_tree;
+
+    for(int k=0; k<DATA_NUM; k++)
+    {
+        my_tree.ins(arr[k]);
+    }
+    //my_tree.printTree();
+
+    for(int k=0; k<1000; k++)
+    {
+        my_tree.del(arr_not_dup[k]);
+    }
+
+}
+
+TEST_F(TreeTest,testAVLTree) 
+{
+    using namespace AVLTree;
 
     Tree<int> my_tree;
 
